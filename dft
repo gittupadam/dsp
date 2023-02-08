@@ -1,0 +1,61 @@
+clc;close all;clear all;
+x=input('enter the input sequence x[n] : ');
+N=length(x);
+n=0:N-1;
+figure(1);
+stem(n,x,'linewidth',2);
+xlabel('n');
+ylabel('x[n]');
+title('input sequence');
+xk=[];
+for k=0:N-1
+    t=0;
+    for m=0:N-1
+        t=t+(x(m+1)*exp(-1i*2*pi*k*m/N));
+    end
+    xk(k+1)=t;
+end
+figure(2);
+stem(n,xk,'linewidth',2);
+xlabel('k');
+ylabel('x[k]');
+title('x[k] sequence');
+real_xk=real(xk);
+imag_xk=imag(xk);
+mag=abs(xk);
+for i=0:N-1
+    ph(i+1)=atan(imag(xk(i+1))/real(xk(i+1)));
+end
+figure(3);
+stem(n,mag,'linewidth',2);
+xlabel('k');
+ylabel('|x(k)|');
+title('magnitude plot');
+figure(4);
+stem(n,ph,'linewidth',2);
+xlabel('k');
+ylabel('angle of x(k)');
+title('phase plot');
+xn=[];
+for k=0:N-1
+    t=0;
+    for m=0:N-1
+        t=t+(xk(m+1)*exp(1i*2*pi*k*m/N));
+    end
+    xn(k+1)=t/N;
+end
+figure(5);
+stem(n,xn,'linewidth',2);
+xlabel('n');
+ylabel('x[n]');
+title('reconstruction of x[n]');
+disp('x[n]');
+disp(x);
+disp('x[k]');
+disp(xk);
+disp('magnitude')
+disp(mag);
+disp('phase');
+disp(ph);
+disp('x[n]');
+disp(xn);
