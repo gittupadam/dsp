@@ -1,0 +1,13 @@
+#define X1 4
+#define X2 4
+float x[20] = {1,2,3,4},y[20] = {1,2,3,4}, lc[40];
+unsignedinti, n;
+voidmain(void)
+{
+for(n=0; n<((X1+X2)-1); n++)
+{
+for(i=0; i<=n; i++)
+lc[n] = lc[n] + (x[i]*y[n-i]);
+}
+while(1);
+}
